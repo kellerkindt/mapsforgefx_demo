@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="750.0" xmlns:fx="http://javafx.com/fxml" fx:controller="de.itd.maps.mapsforge.examples.fx.controller.MapController">
+  <children>
+    <SplitPane fx:id="splitPane" dividerPositions="0.6617647058823529" focusTraversable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="-1.0" prefWidth="-1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <items>
+        <AnchorPane id="mapPane" fx:id="paneMap" maxHeight="-1.0" maxWidth="-1.0" minHeight="0.0" minWidth="0.0" prefHeight="-1.0" prefWidth="-1.0">
+          <children>
+            <Canvas fx:id="canvas" scaleX="1.0" scaleY="1.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+          </children>
+        </AnchorPane>
+        <AnchorPane maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="250.0">
+          <children>
+            <Label layoutX="14.0" layoutY="14.0" prefWidth="69.0" text="Mouse x:" />
+            <Label layoutX="14.0" layoutY="30.0" prefWidth="69.0" text="Mouse y:" />
+            <Label fx:id="labelMouseX" layoutY="14.0" maxWidth="-1.0" prefWidth="-1.0" text="?" AnchorPane.leftAnchor="85.0" AnchorPane.rightAnchor="5.0" />
+            <Label fx:id="labelMouseY" layoutY="30.0" maxWidth="-1.0" prefWidth="-1.0" text="?" AnchorPane.leftAnchor="85.0" AnchorPane.rightAnchor="5.0" />
+            <Label layoutX="14.0" layoutY="49.0" prefWidth="69.0" text="Latitude:" />
+            <Label layoutX="14.0" layoutY="65.0" prefWidth="71.0" text="Longitude:" />
+            <Label fx:id="labelMouseLatitude" layoutY="49.0" text="?" AnchorPane.leftAnchor="85.0" AnchorPane.rightAnchor="5.0" />
+            <Label fx:id="labelMouseLongitude" layoutY="65.0" text="?" AnchorPane.leftAnchor="85.0" AnchorPane.rightAnchor="5.0" />
+            <ToggleButton fx:id="checkBoxRecordRoute" layoutY="133.0" mnemonicParsing="false" text="Record Route" AnchorPane.leftAnchor="8.0" />
+            <Slider fx:id="sliderZoom" layoutY="91.0" majorTickUnit="1.0" max="20.0" min="1.0" minorTickCount="1" prefWidth="161.0" showTickLabels="true" showTickMarks="false" snapToTicks="true" value="16.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
+            <TitledPane animated="false" collapsible="false" layoutY="162.0" text="FileTileCache" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0">
+              <content>
+                <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <children>
+                    <CheckBox fx:id="checkBoxUseFileCache" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Use File-Cache" />
+                    <CheckBox id="checkBoxLimit" fx:id="checkBoxFileLimitUnlimit" layoutX="145.0" layoutY="51.0" mnemonicParsing="false" selected="true" text="Unlimited" />
+                    <Slider id="sliderFileMax" fx:id="sliderFileLimit" blockIncrement="10.0" majorTickUnit="50.0" max="500.0" min="1.0" minorTickCount="5" prefWidth="207.0" showTickLabels="false" showTickMarks="true" snapToTicks="true" value="250.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="67.0" />
+                    <Label text="Current limit:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="51.0" />
+                    <Label id="labelLimit" fx:id="labelFileLimit" text="?????" AnchorPane.leftAnchor="87.0" AnchorPane.topAnchor="51.0" />
+                    <ProgressBar fx:id="progressBarFileTileCacheUsage" prefWidth="200.0" progress="0.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="121.0" />
+                    <Label layoutX="14.0" layoutY="105.0" text="Usage" />
+                  </children>
+                </AnchorPane>
+              </content>
+            </TitledPane>
+            <TitledPane animated="false" collapsible="false" layoutY="379.0" text="MemoryTileCache" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0">
+              <content>
+                <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <children>
+                    <ProgressBar fx:id="progressBarMemoryTileCacheUsage" layoutX="14.0" layoutY="30.0" prefWidth="175.0" progress="0.0" />
+                    <Label layoutX="14.0" layoutY="14.0" text="Usage" />
+                    <Label layoutY="48.0" text="Capacity" AnchorPane.leftAnchor="14.0" />
+                    <TextField fx:id="textFieldMemoryTileCacheCapacity" layoutY="45.0" prefWidth="59.0" text="10" AnchorPane.leftAnchor="71.0" AnchorPane.rightAnchor="71.0" />
+                    <Button fx:id="buttonClear" layoutY="46.0" mnemonicParsing="false" onAction="#onClear" text="Clear" AnchorPane.rightAnchor="14.0" />
+                    <Label text="Memory Total" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="116.0" />
+                    <Label text="Memory Used" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="150.0" />
+                    <Label text="Memory Free" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="132.0" />
+                    <Label fx:id="labelMemoryTotal" prefWidth="75.0" text="Label" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="116.0" />
+                    <Label fx:id="labelMemoryUsed" prefWidth="75.0" text="Label" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="150.0" />
+                    <Label fx:id="labelMemoryFree" prefWidth="75.0" text="Label" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="132.0" />
+                    <Label text="Memory Max" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="100.0" />
+                    <Label id="labelMemoryMay" fx:id="labelMemoryMax" prefWidth="75.0" text="Label" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="100.0" />
+                  </children>
+                </AnchorPane>
+              </content>
+            </TitledPane>
+          </children>
+        </AnchorPane>
+      </items>
+    </SplitPane>
+  </children>
+</AnchorPane>
